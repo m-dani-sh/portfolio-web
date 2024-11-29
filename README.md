@@ -11,10 +11,7 @@ Runs the test suite in interactive watch mode.
 ### `npm run build`
 Builds the app for production, optimizing it for the best performance. The minified build is placed in the `build` folder, ready for deployment.
 
-### `npm run eject`
-This is a one-way operation. It removes the single build dependency and copies all configuration files (webpack, Babel, ESLint, etc.) into your project for full control. You can’t undo this action.
 
-> **Note:** Use `eject` only if you need custom configurations. The default setup is sufficient for most projects.
 
 ## Learn More
 
