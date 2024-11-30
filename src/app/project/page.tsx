@@ -10,28 +10,28 @@ const projects = [
     title: "Book Store App",
     description:
       "A comprehensive CRUD-based app for efficiently managing books with an intuitive interface.",
-    image: "/bookstore.jpg",
+    image: "./bookstore.jpg",
   },
   {
     id: 2,
     title: "Resume Builder",
     description:
       "A powerful tool to easily create and customize professional resumes.",
-    image: "/resume.jpeg",
+    image: "./resume.jpeg",
   },
   {
     id: 3,
     title: "Attendance System",
     description:
       "Tracks daily attendance, handles leave requests seamlessly, and generates accurate attendance grades.",
-    image: "/attendence.png",
+    image: "./attendence.png",
   },
   {
     id: 4,
     title: "E-commerce Website",
     description:
       "A dynamic and responsive platform for seamless online shopping and hassle-free order management.",
-    image: "/ecommerce.png",
+    image: "./ecommerce.png",
   },
 ];
 

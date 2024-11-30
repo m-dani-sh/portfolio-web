@@ -47,7 +47,7 @@ function Header() {
         {/* Hamburger Menu */}
         <button
           onClick={handleMenuToggle}
-          className="block lg:hidden text-white focus:outline-none"
+          className="block lg:hidden text-white focus:outline-none z-50"
         >
           {isMenuOpen ? (
             <span>&#x2715;</span> // Close Icon
