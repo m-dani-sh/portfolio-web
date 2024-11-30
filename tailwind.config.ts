@@ -58,13 +58,13 @@ export default {
       },
       keyframes: {
         fadeInUp: {
-          "0%": { opacity: 0, transform: "translateY(50px)" },  // Corrected: no extra quotes
-          "100%": { opacity: 1, transform: "translateY(0)" },   // Corrected: no extra quotes
+          "0%": { opacity: "0", transform: "translateY(50px)" },  // Changed opacity to string
+          "100%": { opacity: "1", transform: "translateY(0)" },   // Changed opacity to string
         },
         popOut: {
-          "0%": { transform: "scale(0)", opacity: 0 },
-          "50%": { transform: "scale(1.2)", opacity: 1 },
-          "100%": { transform: "scale(1)", opacity: 1 },
+          "0%": { transform: "scale(0)", opacity: "0" },  // Changed opacity to string
+          "50%": { transform: "scale(1.2)", opacity: "1" },
+          "100%": { transform: "scale(1)", opacity: "1" },
         },
       },
       animation: {

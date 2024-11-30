@@ -8,7 +8,7 @@ const ContactForm = () => {
         {/* Left Section */}
         <div className="flex flex-col justify-center items-center px-4 md:px-20 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-            Lets chat.
+            Let&apos;s chat.
             <br />
             Tell me about your <br />
             <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#C100EF] to-[#6F00FF]">
@@ -16,7 +16,7 @@ const ContactForm = () => {
             </span>
           </h1>
           <p className="text-lg text-gray-300 mb-6">
-            Let's create something together.
+            Let&apos;s create something together.
           </p>
 
           {/* Social Icons */}

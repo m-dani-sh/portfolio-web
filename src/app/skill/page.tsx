@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS CSS
 import Image from 'next/image'; // Import Image from next/image for optimization
@@ -7,8 +7,8 @@ import Image from 'next/image'; // Import Image from next/image for optimization
 const Skills = () => {
   const [progressValues, setProgressValues] = useState(Array(6).fill(0)); // Initial progress bar values
 
-  // Define skills array without useMemo, as it's static
-  const skills = [
+  // Memoize the skills array
+  const skills = useMemo(() => [
     { name: "Frontend Developer", description: "Specializing in creating visually appealing and user-friendly interfaces using React, Next.js, and TypeScript.", image: "/frontend-developer.jpeg" },
     { name: "Backend Developer", description: "Focused on building robust and scalable server-side applications with Node.js, Express, and MongoDB.", image: "/backend-developer.jpeg" },
     { name: "Full Stack Developer", description: "Proficient in both frontend and backend development, delivering end-to-end web solutions.", image: "/full-stack-developer.png" },
@@ -18,7 +18,7 @@ const Skills = () => {
     { name: "Node.js", percentage: 65 },
     { name: "Express", percentage: 70 },
     { name: "MongoDB", percentage: 60 },
-  ];
+  ], []); // Empty dependency array to memoize the skills array
 
   useEffect(() => {
     // Initialize AOS
@@ -33,7 +33,7 @@ const Skills = () => {
 
     // Cleanup on component unmount
     return () => AOS.refresh();
-  }, []);
+  }, []); // Empty dependency array ensures this runs only once
 
   useEffect(() => {
     // Animate progress bars from 0 to the target values
@@ -46,7 +46,7 @@ const Skills = () => {
     }, 30); // Smooth increment animation
 
     return () => clearInterval(interval); // Clear interval on component unmount
-  }, [skills]);
+  }, [skills]); // This useEffect runs when the skills array is memoized
 
   return (
     <div className="min-h-screen bg-[#050816] flex flex-col justify-center items-center text-white">
