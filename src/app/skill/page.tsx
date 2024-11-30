@@ -1,22 +1,24 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS CSS
+import Image from 'next/image'; // Import Image from next/image for optimization
 
 const Skills = () => {
   const [progressValues, setProgressValues] = useState(Array(6).fill(0)); // Initial progress bar values
 
-  const skills = [
-    { name: "Frontend Developer", description: "Specializing in creating visually appealing and user-friendly interfaces using React, Next.js, and TypeScript.", image: "/frontend-developer.jpg" },
-    { name: "Backend Developer", description: "Focused on building robust and scalable server-side applications with Node.js, Express, and MongoDB.", image: "/backend-developer.jpg" },
-    { name: "Full Stack Developer", description: "Proficient in both frontend and backend development, delivering end-to-end web solutions.", image: "/fullstack-developer.jpg" },
+  // Memoizing the skills array to prevent unnecessary rerenders
+  const skills = useMemo(() => [
+    { name: "Frontend Developer", description: "Specializing in creating visually appealing and user-friendly interfaces using React, Next.js, and TypeScript.", image: "/frontend-develpper.jpeg" },
+    { name: "Backend Developer", description: "Focused on building robust and scalable server-side applications with Node.js, Express, and MongoDB.", image: "/backend-develper.jpeg" },
+    { name: "Full Stack Developer", description: "Proficient in both frontend and backend development, delivering end-to-end web solutions.", image: "/full-stack-develpper.png" },
     { name: "HTML", percentage: 80 },
     { name: "CSS", percentage: 70 },
     { name: "TypeScript", percentage: 75 },
     { name: "Node.js", percentage: 65 },
     { name: "Express", percentage: 70 },
     { name: "MongoDB", percentage: 60 },
-  ];
+  ], []);
 
   useEffect(() => {
     // Initialize AOS
@@ -60,7 +62,7 @@ const Skills = () => {
           >
             {skill.image && (
               <div className="bg-gradient-to-r from-[#C100EF] to-[#6F00FF] p-2 rounded-full inline-block mb-4">
-                <img
+                <Image
                   src={skill.image}
                   alt={skill.name}
                   width={80}

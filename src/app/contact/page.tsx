@@ -8,7 +8,7 @@ const ContactForm = () => {
         {/* Left Section */}
         <div className="flex flex-col justify-center items-center px-4 md:px-20 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-            Let's chat.
+            Lets chat.
             <br />
             Tell me about your <br />
             <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#C100EF] to-[#6F00FF]">
