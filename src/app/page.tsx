@@ -1,6 +1,6 @@
 "use client";
 
-import Typical from "react-typical";
+import { Typewriter } from 'react-simple-typewriter';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
@@ -20,19 +20,17 @@ export default function Home() {
           <h1 className="text-white font-extrabold text-3xl sm:text-5xl lg:text-6xl leading-tight animate-fadeInUp">
             Hello! I am <span className="text-[#C100EF]">Danish</span>
           </h1>
-          <Typical
-            steps={[
-              "Full-Stack Web Developer 💻",
-              3000,
-              "MERN Stack Enthusiast ",
-              3000,
-              "AI & Web3 Explorer 🔍",
-              3000,
-            ]}
-            loop={Infinity}
-            wrapper="h2"
-            className="text-white text-3xl sm:text-4xl lg:text-5xl mt-4 leading-tight animate-fadeInUp delay-100 transform-gpu hover:scale-105 transition-all duration-500 ease-in-out"
-          />
+          <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl mt-4 leading-tight animate-fadeInUp delay-100 transform-gpu hover:scale-105 transition-all duration-500 ease-in-out">
+            <Typewriter
+              words={["Full-Stack Web Developer 💻", "MERN Stack Enthusiast", "AI & Web3 Explorer 🔍"]}
+              loop={true}
+              cursor
+              cursorStyle="|"
+              typeSpeed={100}
+              deleteSpeed={50}
+              delaySpeed={3000}
+            />
+          </h2>
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl mt-6 leading-relaxed animate-fadeInUp delay-200 transform-gpu hover:scale-105 transition-all duration-500 ease-in-out">
             <span className="text-[#C100EF] font-medium">Full-Stack Web Developer</span> specializing in MERN and Next.js, focused on building scalable, user-driven applications. Passionate about integrating <span className="text-[#C100EF] font-medium">AI and Web3</span> to shape the future of technology.
           </p>
@@ -48,7 +46,6 @@ export default function Home() {
             </Button>
           </div>
         </div>
-
 
         {/* Right Section */}
         <div className="relative w-[250px] sm:w-[350px] h-[250px] sm:h-[350px] mt-10 sm:mt-0 flex items-center justify-center">
