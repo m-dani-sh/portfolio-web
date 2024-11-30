@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS CSS
 import Image from 'next/image'; // Import Image from next/image for optimization
@@ -7,18 +7,18 @@ import Image from 'next/image'; // Import Image from next/image for optimization
 const Skills = () => {
   const [progressValues, setProgressValues] = useState(Array(6).fill(0)); // Initial progress bar values
 
-  // Memoizing the skills array to prevent unnecessary rerenders
-  const skills = useMemo(() => [
-    { name: "Frontend Developer", description: "Specializing in creating visually appealing and user-friendly interfaces using React, Next.js, and TypeScript.", image: "/frontend-develpper.jpeg" },
-    { name: "Backend Developer", description: "Focused on building robust and scalable server-side applications with Node.js, Express, and MongoDB.", image: "/backend-develper.jpeg" },
-    { name: "Full Stack Developer", description: "Proficient in both frontend and backend development, delivering end-to-end web solutions.", image: "/full-stack-develpper.png" },
+  // Define skills array without useMemo, as it's static
+  const skills = [
+    { name: "Frontend Developer", description: "Specializing in creating visually appealing and user-friendly interfaces using React, Next.js, and TypeScript.", image: "/frontend-developer.jpeg" },
+    { name: "Backend Developer", description: "Focused on building robust and scalable server-side applications with Node.js, Express, and MongoDB.", image: "/backend-developer.jpeg" },
+    { name: "Full Stack Developer", description: "Proficient in both frontend and backend development, delivering end-to-end web solutions.", image: "/full-stack-developer.png" },
     { name: "HTML", percentage: 80 },
     { name: "CSS", percentage: 70 },
     { name: "TypeScript", percentage: 75 },
     { name: "Node.js", percentage: 65 },
     { name: "Express", percentage: 70 },
     { name: "MongoDB", percentage: 60 },
-  ], []);
+  ];
 
   useEffect(() => {
     // Initialize AOS
@@ -40,7 +40,7 @@ const Skills = () => {
     const interval = setInterval(() => {
       setProgressValues((prev) =>
         prev.map((value, index) =>
-          value < skills[index + 3]?.percentage ? value + 1 : value
+          value < (skills[index + 3]?.percentage ?? 0) ? value + 1 : value
         )
       );
     }, 30); // Smooth increment animation

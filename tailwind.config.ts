@@ -58,8 +58,8 @@ export default {
       },
       keyframes: {
         fadeInUp: {
-          "0%": { opacity: 0, transform: "translateY(50px)" },
-          "100%": { opacity: 1, transform: "translateY(0)" },
+          "0%": { opacity: 0, transform: "translateY(50px)" },  // Corrected: no extra quotes
+          "100%": { opacity: 1, transform: "translateY(0)" },   // Corrected: no extra quotes
         },
         popOut: {
           "0%": { transform: "scale(0)", opacity: 0 },

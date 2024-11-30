@@ -104,7 +104,7 @@ const ContactForm = () => {
               <textarea
                 id="message"
                 name="message"
-                rows="4"
+                rows={4}
                 required
                 className="w-full px-4 py-3 rounded-lg border border-gray-600 bg-[#050816] text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C100EF] resize-none transition-transform duration-500 hover:-translate-y-1"
                 placeholder="Describe your requirements"
