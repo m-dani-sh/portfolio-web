@@ -9,9 +9,9 @@ const Skills = () => {
 
   // Memoize the skills array
   const skills = useMemo(() => [
-    { name: "Frontend Developer", description: "Specializing in creating visually appealing and user-friendly interfaces using React, Next.js, and TypeScript.", image: "/frontend-developer.jpeg" },
-    { name: "Backend Developer", description: "Focused on building robust and scalable server-side applications with Node.js, Express, and MongoDB.", image: "/backend-developer.jpeg" },
-    { name: "Full Stack Developer", description: "Proficient in both frontend and backend development, delivering end-to-end web solutions.", image: "/full-stack-developer.png" },
+    { name: "Frontend Developer", description: "Specializing in creating visually appealing and user-friendly interfaces using React, Next.js, and TypeScript.", image: "./frontend-developer.jpeg" },
+    { name: "Backend Developer", description: "Focused on building robust and scalable server-side applications with Node.js, Express, and MongoDB.", image: "./backend-developer.jpeg" },
+    { name: "Full Stack Developer", description: "Proficient in both frontend and backend development, delivering end-to-end web solutions.", image: "./full-stack-developer.png" },
     { name: "HTML", percentage: 80 },
     { name: "CSS", percentage: 70 },
     { name: "TypeScript", percentage: 75 },

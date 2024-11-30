@@ -23,7 +23,7 @@ const ContactForm = () => {
           <div className="flex justify-center gap-6 items-center text-lg text-gray-200 font-medium hover:underline">
             <a href="mailto:dm.danish2005@gmail.com" target="_blank" rel="noopener noreferrer">
               <Image
-                src="/gmail.jpeg"
+                src="./gmail.jpeg"
                 alt="Gmail logo"
                 width={40}
                 height={40}
@@ -32,7 +32,7 @@ const ContactForm = () => {
             </a>
             <a href="https://www.linkedin.com/in/muhammad-danish-2256522a1/" target="_blank" rel="noopener noreferrer">
               <Image
-                src="/linkedin.png"
+                src="./linkedin.png"
                 alt="LinkedIn logo"
                 width={40}
                 height={40}
@@ -41,7 +41,7 @@ const ContactForm = () => {
             </a>
             <a href="https://github.com/m-dani-sh" target="_blank" rel="noopener noreferrer">
               <Image
-                src="/github.png"
+                src="./github.png"
                 alt="GitHub logo"
                 width={40}
                 height={40}
