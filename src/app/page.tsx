@@ -13,7 +13,7 @@ export default function Home() {
     <div>
       <div
         className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col sm:flex-row items-center justify-between px-4 sm:px-20 py-10"
-        style={{ backgroundImage: "url('/background.png')" }}
+        style={{ backgroundImage: "url('./background.png')" }}
       >
         {/* Left Section */}
         <div className="max-w-lg text-center sm:text-left sm:max-w-xl">
