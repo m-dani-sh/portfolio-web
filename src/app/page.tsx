@@ -22,7 +22,7 @@ export default function Home() {
           </h1>
           <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl mt-4 leading-tight animate-fadeInUp delay-100 transform-gpu hover:scale-105 transition-all duration-500 ease-in-out">
             <Typewriter
-              words={["Full-Stack Web Developer 💻", "MERN Stack Enthusiast", "AI & Web3 Explorer 🔍"]}
+              words={["Full-Stack Web Developer 💻", "MERN Stack Enthusiast", "AI & Data Sci Explorer 🔍"]}
               loop={true}
               cursor
               cursorStyle="|"

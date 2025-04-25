@@ -24,15 +24,16 @@ const projects = [
     title: "Attendance System",
     description:
       "Tracks daily attendance, handles leave requests seamlessly, and generates accurate attendance grades.",
-    image: "./attendence.png",
+    image: "./resturant-sysem.png",
   },
   {
     id: 4,
-    title: "E-commerce Website",
+    title: "Restaurant System UI",
     description:
-      "A dynamic and responsive platform for seamless online shopping and hassle-free order management.",
-    image: "./ecommerce.png",
-  },
+      "A simple and responsive user interface for a restaurant system. This project focuses only on the front-end UI design.",
+    image: "./restaurant.png",
+}
+
 ];
 
 const Projects = () => {
