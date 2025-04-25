@@ -24,7 +24,7 @@ const projects = [
     title: "Attendance System",
     description:
       "Tracks daily attendance, handles leave requests seamlessly, and generates accurate attendance grades.",
-    image: "./resturant-sysem.png",
+    image: "./attendence.png",
   },
   {
     id: 4,
