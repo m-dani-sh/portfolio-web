@@ -31,7 +31,7 @@ const projects = [
     title: "Restaurant System UI",
     description:
       "A simple and responsive user interface for a restaurant system. This project focuses only on the front-end UI design.",
-    image: "./restaurant.png",
+    image: "./resturant-sysem.png",
 }
 
 ];
