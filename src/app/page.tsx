@@ -22,7 +22,7 @@ export default function Home() {
           </h1>
           <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl mt-4 leading-tight animate-fadeInUp delay-100 transform-gpu hover:scale-105 transition-all duration-500 ease-in-out">
             <Typewriter
-              words={["Full-Stack Web Developer 💻", "MERN Stack Enthusiast", "AI & Data Explorer 🔍"]}
+              words={["Full-Stack Web Developer 💻", "MERN Stack Enthusiast", "AI & Data Science Explorer 🔍"]}
               loop={true}
               cursor
               cursorStyle="|"
@@ -32,7 +32,7 @@ export default function Home() {
             />
           </h2>
           <p className="text-gray-300 text-base sm:text-lg lg:text-xl mt-6 leading-relaxed animate-fadeInUp delay-200 transform-gpu hover:scale-105 transition-all duration-500 ease-in-out">
-            <span className="text-[#C100EF] font-medium">Full-Stack Web Developer</span> specializing in MERN and Next.js, focused on building scalable, user-driven applications. Passionate about integrating <span className="text-[#C100EF] font-medium">AI & Data Sci</span> to shape the future of technology.
+            <span className="text-[#C100EF] font-medium">Full-Stack Web Developer</span> specializing in MERN and Next.js, focused on building scalable, user-driven applications. Passionate about integrating <span className="text-[#C100EF] font-medium">AI & Data Science</span> to shape the future of technology.
           </p>
 
           {/* Buttons */}
