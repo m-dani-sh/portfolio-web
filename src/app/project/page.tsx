@@ -12,27 +12,35 @@ const projects = [
       "A comprehensive CRUD-based app for efficiently managing books with an intuitive interface.",
     image: "./bookstore.jpg",
   },
+ 
   {
     id: 2,
-    title: "Resume Builder",
-    description:
-      "A powerful tool to easily create and customize professional resumes.",
-    image: "./resume.jpeg",
-  },
-  {
-    id: 3,
     title: "Attendance System",
     description:
       "Tracks daily attendance, handles leave requests seamlessly, and generates accurate attendance grades.",
     image: "./attendence.png",
   },
   {
-    id: 4,
+    id: 3,
     title: "Restaurant System UI",
     description:
-      "A simple and responsive user interface for a restaurant system. This project focuses only on the front-end UI design.",
+      "A simple and responsive user interface for a restaurant system. This project focuses only on the UI/UX design.",
     image: "./resturant-sysem.png",
-}
+},
+{
+    id: 4,
+    title: "PetCare",
+    description:
+      "A pet service platform that offers services, schedules appointments, and sends email confirmations.",
+    image: "./pet-care.png",
+  },
+  {
+    id: 5,
+    title: "AI Quiz App",
+    description:
+      "AI-powered quiz app with real-time questions, cheating detection, and leaderboards.",
+    image: "./quiz-app.png",
+  },
 
 ];
 
