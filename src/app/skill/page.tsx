@@ -21,7 +21,7 @@ const Skills = () => {
     { name: "MongoDB", percentage: 65 },
     { name: "Firebase", percentage: 75 },
     { name: "Ai", percentage: 60 },
-     
+
   ], []); // Empty dependency array to memoize the skills array
 
   useEffect(() => {
@@ -41,10 +41,12 @@ const Skills = () => {
 
   useEffect(() => {
     // Animate progress bars from 0 to the target values
+    const percentageSkills = skills.filter((skill) => skill.percentage !== undefined);
+
     const interval = setInterval(() => {
       setProgressValues((prev) =>
-        prev.map((value, index) =>
-          value < (skills[index + 3]?.percentage ?? 0) ? value + 1 : value
+        percentageSkills.map((skill, index) =>
+          (prev[index] || 0) < skill.percentage ? (prev[index] || 0) + 1 : prev[index] || 0
         )
       );
     }, 30); // Smooth increment animation
