@@ -15,11 +15,11 @@ const Skills = () => {
     { name: "HTML", percentage: 80 },
     { name: "CSS", percentage: 70 },
     { name: "TypeScript", percentage: 75 },
-     { name: "Python", percentage: 90 },
+    { name: "Python", percentage: 90 },
     { name: "Node.js", percentage: 65 },
     { name: "Express", percentage: 70 },
-    { name: "MongoDB", percentage: 60 },
-    { name: "Firebase", percentage: 70 },
+    { name: "MongoDB", percentage: 65 },
+    { name: "Firebase", percentage: 75 },
     { name: "Ai", percentage: 60 },
      
   ], []); // Empty dependency array to memoize the skills array
