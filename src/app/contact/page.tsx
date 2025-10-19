@@ -1,7 +1,50 @@
 "use client";
 import Image from 'next/image';
-
+import React, { useState } from "react";
+import emailjs from "emailjs-com";
 const ContactForm = () => {
+
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState("");
+
+
+   const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+   const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+  const TEMPLATE_USER = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_USER!;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSending(true);
+    setStatus("");
+
+    emailjs
+      .send(
+        SERVICE_ID, // 🔹 from EmailJS Dashboard
+        TEMPLATE_USER, // 🔹 from EmailJS Dashboard
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        PUBLIC_KEY // 🔹 from EmailJS Account → Integration tab public key 
+      )
+      .then(
+        () => {
+          setStatus("✅ Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
+          setIsSending(false);
+        },
+        (error) => {
+          console.error(error);
+          setStatus("❌ Failed to send message. Try again later.");
+          setIsSending(false);
+        }
+      );
+  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#050816] to-[#1a1f38] flex items-center justify-center px-6 py-10">
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-8 bg-[#1a1f38] shadow-lg rounded-lg p-6 md:p-8">
@@ -112,13 +155,17 @@ const ContactForm = () => {
             </div>
 
             {/* Submit Button */}
-            <button
+             <button
               type="submit"
-              className="w-full px-6 py-3 bg-gradient-to-r from-[#C100EF] to-[#6F00FF] text-white font-semibold rounded-lg hover:opacity-90 transition-transform duration-500 hover:-translate-y-1"
+              disabled={isSending}
+              className="w-full px-6 py-3 bg-gradient-to-r from-[#C100EF] to-[#6F00FF] text-white font-semibold rounded-lg hover:opacity-90 transition-transform duration-500 hover:-translate-y-1 disabled:opacity-50"
             >
-              Send Message
+              {isSending ? "Sending..." : "Send Message"}
             </button>
           </form>
+           {status && (
+            <p className="text-center mt-4 text-sm text-gray-300">{status}</p>
+          )}
         </div>
       </div>
     </div>
