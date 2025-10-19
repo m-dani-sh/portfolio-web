@@ -1,18 +1,20 @@
 "use client";
-import Image from 'next/image';
+import Image from "next/image";
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-const ContactForm = () => {
 
+const ContactForm = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState("");
 
+  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!; // ⚠️ Fixed name (was TEMPLATE_USER)
+  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
-   const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-   const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
-  const TEMPLATE_USER = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_USER!;
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -23,14 +25,14 @@ const ContactForm = () => {
 
     emailjs
       .send(
-        SERVICE_ID, // 🔹 from EmailJS Dashboard
-        TEMPLATE_USER, // 🔹 from EmailJS Dashboard
+        SERVICE_ID,
+        TEMPLATE_ID, // ✅ correct EmailJS Template ID variable
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
         },
-        PUBLIC_KEY // 🔹 from EmailJS Account → Integration tab public key 
+        PUBLIC_KEY
       )
       .then(
         () => {
@@ -40,11 +42,12 @@ const ContactForm = () => {
         },
         (error) => {
           console.error(error);
-          setStatus("❌ Failed to send message. Try again later.");
+          setStatus("❌ Failed to send message. Please try again later.");
           setIsSending(false);
         }
       );
   };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#050816] to-[#1a1f38] flex items-center justify-center px-6 py-10">
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-8 bg-[#1a1f38] shadow-lg rounded-lg p-6 md:p-8">
@@ -64,7 +67,11 @@ const ContactForm = () => {
 
           {/* Social Icons */}
           <div className="flex justify-center gap-6 items-center text-lg text-gray-200 font-medium hover:underline">
-            <a href="mailto:dm.danish2005@gmail.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="mailto:dm.danish2005@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="./gmail.jpeg"
                 alt="Gmail logo"
@@ -73,7 +80,11 @@ const ContactForm = () => {
                 className="w-7 h-7 rounded-xl"
               />
             </a>
-            <a href="https://www.linkedin.com/in/muhammad-danish-2256522a1/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/in/muhammad-danish-2256522a1/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="./linkedin.png"
                 alt="LinkedIn logo"
@@ -82,7 +93,11 @@ const ContactForm = () => {
                 className="w-7 h-7 rounded-xl"
               />
             </a>
-            <a href="https://github.com/m-dani-sh" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/m-dani-sh"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="./github.png"
                 alt="GitHub logo"
@@ -99,7 +114,8 @@ const ContactForm = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
             Send us a message
           </h2>
-          <form className="flex flex-col gap-6">
+
+          <form className="flex flex-col gap-6" onSubmit={sendEmail}>
             {/* Full Name Input */}
             <div className="flex flex-col gap-1">
               <label
@@ -112,6 +128,8 @@ const ContactForm = () => {
                 type="text"
                 id="name"
                 name="name"
+                value={formData.name}
+                onChange={handleChange}
                 required
                 className="w-full px-4 py-3 rounded-lg border border-gray-600 bg-[#050816] text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C100EF] transition-transform duration-500 hover:-translate-y-1"
                 placeholder="Enter your full name"
@@ -130,6 +148,8 @@ const ContactForm = () => {
                 type="email"
                 id="email"
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
                 required
                 className="w-full px-4 py-3 rounded-lg border border-gray-600 bg-[#050816] text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C100EF] transition-transform duration-500 hover:-translate-y-1"
                 placeholder="Enter your email"
@@ -148,6 +168,8 @@ const ContactForm = () => {
                 id="message"
                 name="message"
                 rows={4}
+                value={formData.message}
+                onChange={handleChange}
                 required
                 className="w-full px-4 py-3 rounded-lg border border-gray-600 bg-[#050816] text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C100EF] resize-none transition-transform duration-500 hover:-translate-y-1"
                 placeholder="Describe your requirements"
@@ -155,7 +177,7 @@ const ContactForm = () => {
             </div>
 
             {/* Submit Button */}
-             <button
+            <button
               type="submit"
               disabled={isSending}
               className="w-full px-6 py-3 bg-gradient-to-r from-[#C100EF] to-[#6F00FF] text-white font-semibold rounded-lg hover:opacity-90 transition-transform duration-500 hover:-translate-y-1 disabled:opacity-50"
@@ -163,7 +185,8 @@ const ContactForm = () => {
               {isSending ? "Sending..." : "Send Message"}
             </button>
           </form>
-           {status && (
+
+          {status && (
             <p className="text-center mt-4 text-sm text-gray-300">{status}</p>
           )}
         </div>
