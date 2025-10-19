@@ -32,7 +32,9 @@ const ContactForm = () => {
           from_email: formData.email,
           message: formData.message,
         },
+        
         PUBLIC_KEY //publc key updated
+        
       )
       .then(
         () => {
@@ -46,6 +48,8 @@ const ContactForm = () => {
           setIsSending(false);
         }
       );
+      console.log(SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY);
+
   };
 
   return (
