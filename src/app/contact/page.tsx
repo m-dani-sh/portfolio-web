@@ -32,7 +32,7 @@ const ContactForm = () => {
           from_email: formData.email,
           message: formData.message,
         },
-        PUBLIC_KEY
+        PUBLIC_KEY //publc key updated
       )
       .then(
         () => {
