@@ -28,15 +28,15 @@ const ContactForm = () => {
 
     emailjs
       .send(
-        SERVICE_ID,
-        TEMPLATE_ID, // ✅ correct EmailJS Template ID variable
+        "service_8hgdpjd",
+        "template_tof1gc9", // ✅ correct EmailJS Template ID variable
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
         },
         
-        PUBLIC_KEY //publc key updated
+        "HY2xDz32i8Utw5APJ" //publc key updated
         
       )
       .then(
