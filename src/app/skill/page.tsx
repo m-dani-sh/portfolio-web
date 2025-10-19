@@ -1,58 +1,83 @@
 "use client";
 import React, { useEffect, useState, useMemo } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS CSS
-import Image from 'next/image'; // Import Image from next/image for optimization
+import "aos/dist/aos.css";
+import Image from "next/image";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaNodeJs,
+  FaPython,
+} from "react-icons/fa";
+import {
+  SiTypescript,
+  SiExpress,
+  SiFirebase,
+  SiMongodb,
+  SiOpenai,
+} from "react-icons/si";
 
 const Skills = () => {
-  const [progressValues, setProgressValues] = useState(Array(6).fill(0)); // Initial progress bar values
+  const [progressValues, setProgressValues] = useState(Array(12).fill(0));
 
-  // Memoize the skills array
-  const skills = useMemo(() => [
-    { name: "Frontend Developer", description: "Specializing in creating visually appealing and user-friendly interfaces using React, Next.js, and TypeScript.", image: "./frontend-developer.jpeg" },
-    { name: "Backend Developer", description: "Focused on building robust and scalable server-side applications with Node.js, Express, and MongoDB.", image: "./backend-developer.jpeg" },
-    { name: "AI Engineer", description: "Junior AI Engineer building intelligent applications with Python, machine learning, and AI frameworks like TensorFlow and PyTorch.", image: "./AI-Engineer.png" },
-    { name: "HTML", percentage: 80 },
-    { name: "CSS", percentage: 70 },
-    { name: "TypeScript", percentage: 75 },
-    { name: "Python", percentage: 90 },
-    { name: "Node.js", percentage: 65 },
-    { name: "Express", percentage: 70 },
-    { name: "MongoDB", percentage: 65 },
-    { name: "Firebase", percentage: 75 },
-    { name: "Ai", percentage: 60 },
-
-  ], []); // Empty dependency array to memoize the skills array
+  // ✅ Skill data with icons
+  const skills = useMemo(
+    () => [
+      {
+        name: "Frontend Developer",
+        description:
+          "Specializing in creating visually appealing and user-friendly interfaces using React, Next.js, and TypeScript.",
+        image: "./frontend-developer.jpeg",
+      },
+      {
+        name: "Backend Developer",
+        description:
+          "Focused on building robust and scalable server-side applications with Node.js, Express, and MongoDB.",
+        image: "./backend-developer.jpeg",
+      },
+      {
+        name: "AI Engineer",
+        description:
+          "Junior AI Engineer building intelligent applications with Python, machine learning, and  Agnetic AI frameworks like Open AI Sdk .",
+        image: "./AI-Engineer.png",
+      },
+      { icon: <FaHtml5 className="text-orange-500 text-5xl" />, percentage: 80 },
+      { icon: <FaCss3Alt className="text-blue-500 text-5xl" />, percentage: 70 },
+      { icon: <SiTypescript className="text-sky-400 text-5xl" />, percentage: 75 },
+      { icon: <FaPython className="text-yellow-400 text-5xl" />, percentage: 90 },
+      { icon: <FaNodeJs className="text-green-500 text-5xl" />, percentage: 65 },
+      { icon: <SiExpress className="text-gray-300 text-5xl" />, percentage: 70 },
+      { icon: <SiMongodb className="text-green-400 text-5xl" />, percentage: 65 },
+      { icon: <SiFirebase className="text-yellow-500 text-5xl" />, percentage: 75 },
+      { icon: <SiOpenai className="text-purple-400 text-5xl" />, percentage: 60 },
+    ],
+    []
+  );
 
   useEffect(() => {
-    // Initialize AOS
     AOS.init({
-      duration: 2000,  // Animation duration
-      once: false,     // Trigger the animation every time it comes into the viewport
-      mirror: true,    // Allow animation to be triggered on scrolling back up
+      duration: 2000,
+      once: false,
+      mirror: true,
     });
-
-    // Refresh AOS if content changes dynamically
     AOS.refresh();
 
-    // Cleanup on component unmount
     return () => AOS.refresh();
-  }, []); // Empty dependency array ensures this runs only once
+  }, []);
 
   useEffect(() => {
-    // Animate progress bars from 0 to the target values
-    const percentageSkills = skills.filter((skill) => skill.percentage !== undefined);
+    const percentageSkills = skills.filter((s) => s.percentage !== undefined);
 
     const interval = setInterval(() => {
       setProgressValues((prev) =>
-        percentageSkills.map((skill, index) =>
-          (prev[index] || 0) < skill.percentage ? (prev[index] || 0) + 1 : prev[index] || 0
+        percentageSkills.map((s, i) =>
+          (prev[i] || 0) < s.percentage ? (prev[i] || 0) + 1 : prev[i] || 0
         )
       );
-    }, 30); // Smooth increment animation
+    }, 30);
 
-    return () => clearInterval(interval); // Clear interval on component unmount
-  }, [skills]); // This useEffect runs when the skills array is memoized
+    return () => clearInterval(interval);
+  }, [skills]);
 
   return (
     <div className="min-h-screen bg-[#050816] flex flex-col justify-center items-center text-white">
@@ -61,37 +86,45 @@ const Skills = () => {
         {skills.map((skill, index) => (
           <div
             key={index}
-            className={`group bg-gradient-to-b from-[#1a1f38] to-[#050816] rounded-[20px] p-6 shadow-lg transition-transform transform hover:scale-105 ${skill.description ? "h-96 text-center" : "h-48"}`}
-            data-aos={skill.description ? "fade-right" : "fade-up"} // AOS animation based on description or progress
-            data-aos-delay={index * 200} // Delay based on the index to show skills one by one
-            data-aos-anchor-placement="top-bottom" // Trigger the animation when it crosses into the viewport from top to bottom
+            className={`group bg-gradient-to-b from-[#1a1f38] to-[#050816] rounded-[20px] p-6 shadow-lg transition-transform transform hover:scale-105 ${
+              skill.description ? "h-96 text-center" : "h-48"
+            }`}
+            data-aos={skill.description ? "fade-right" : "fade-up"}
+            data-aos-delay={index * 200}
+            data-aos-anchor-placement="top-bottom"
           >
+            {/* Developer Role Cards */}
             {skill.image && (
-              <div className="bg-gradient-to-r from-[#C100EF] to-[#6F00FF] p-2 rounded-full inline-block mb-4">
-                <Image
-                  src={skill.image}
-                  alt={skill.name}
-                  width={80}
-                  height={80}
-                  className="rounded-full"
-                />
-              </div>
+              <>
+                <div className="bg-gradient-to-r from-[#C100EF] to-[#6F00FF] p-2 rounded-full inline-block mb-4">
+                  <Image
+                    src={skill.image}
+                    alt={skill.name}
+                    width={80}
+                    height={80}
+                    className="rounded-full"
+                  />
+                </div>
+                <h2 className="text-lg font-bold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#C100EF] to-[#6F00FF] mb-4">
+                  {skill.name}
+                </h2>
+                <p className="text-gray-300 text-sm mb-4">
+                  {skill.description}
+                </p>
+              </>
             )}
-            <h2 className="text-lg font-bold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#C100EF] to-[#6F00FF] mb-4">
-              {skill.name}
-            </h2>
-            {skill.description && (
-              <p className="text-gray-300 text-sm mb-4">{skill.description}</p>
-            )}
-            {!skill.description && (
-              <div className="mt-4">
-                <div className="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+
+            {/* Skill Icon + Progress */}
+            {!skill.image && (
+              <div className="flex flex-col items-center justify-center mt-4">
+                <div className="mb-4">{skill.icon}</div>
+                <div className="relative w-full h-2 bg-gray-700 rounded-full overflow-hidden">
                   <div
                     className="absolute h-full bg-gradient-to-r from-[#C100EF] to-[#6F00FF] transition-all duration-1000"
                     style={{ width: `${progressValues[index - 3] || 0}%` }}
                   />
                 </div>
-                <div className="text-sm text-white text-center mt-2">
+                <div className="text-sm text-gray-300 mt-2">
                   {progressValues[index - 3]}%
                 </div>
               </div>
