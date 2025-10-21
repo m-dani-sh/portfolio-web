@@ -34,6 +34,7 @@ const ContactForm = () => {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
+          sent_time: new Date().toLocaleString()
         },
         
         "HY2xDz32i8Utw5APJ" //publc key updated
