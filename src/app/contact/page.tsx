@@ -88,7 +88,7 @@ const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
               rel="noopener noreferrer"
             >
               <Image
-                src="./gmail.jpeg"
+                src="/gmail.jpeg"
                 alt="Gmail logo"
                 width={40}
                 height={40}
@@ -101,7 +101,7 @@ const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
               rel="noopener noreferrer"
             >
               <Image
-                src="./linkedin.png"
+                src="/linkedin.png"
                 alt="LinkedIn logo"
                 width={40}
                 height={40}
@@ -114,7 +114,7 @@ const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
               rel="noopener noreferrer"
             >
               <Image
-                src="./github.png"
+                src="/github.png"
                 alt="GitHub logo"
                 width={40}
                 height={40}
