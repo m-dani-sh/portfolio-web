@@ -8,9 +8,7 @@ const ContactForm = () => {
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState("");
 
-  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!; // ⚠️ Fixed name (was TEMPLATE_USER)
-  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+
 
 
   const handleChange = (
@@ -19,41 +17,50 @@ const ContactForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   setIsSending(true);
   setStatus("");
 
-  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!; // ⚠️ Fixed name (was TEMPLATE_USER)
-  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
-  // console.log("EmailJS IDs:", { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY }); // debug check
+  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID?.trim();
+  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID?.trim();
+  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY?.trim();
 
-  emailjs
-    .send(
+  // 🧠 Quick check for missing env vars in production
+  if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+    console.error("❌ Missing EmailJS environment variables:", {
+      SERVICE_ID,
+      TEMPLATE_ID,
+      PUBLIC_KEY,
+    });
+    setStatus("❌ Email configuration error. Please contact support.");
+    setIsSending(false);
+    return;
+  }
+
+  // console.log("✅ EmailJS IDs:", { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY });
+
+  try {
+    await emailjs.send(
       SERVICE_ID,
       TEMPLATE_ID,
       {
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
-        sent_time: new Date().toLocaleString(),
       },
       PUBLIC_KEY
-    )
-    .then(
-      () => {
-        setStatus("✅ Message sent successfully");
-        setFormData({ name: "", email: "", message: "" });
-        setIsSending(false);
-      },
-      (error) => {
-        console.error(error);
-        setStatus("❌ Failed to send message. Please try again later.");
-        setIsSending(false);
-      }
     );
+    setStatus("✅ Message sent successfully");
+    setFormData({ name: "", email: "", message: "" });
+  } catch (error) {
+    console.error("❌ Email send error:", error);
+    setStatus("❌ Failed to send message. Please try again later.");
+  } finally {
+    setIsSending(false);
+  }
 };
+
 
 
   return (
