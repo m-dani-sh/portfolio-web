@@ -26,17 +26,17 @@ const ContactForm = () => {
 
     emailjs
       .send(
-        SERVICE_ID,
-        TEMPLATE_ID, // ✅ correct EmailJS Template ID variable
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!, // ✅ correct EmailJS Template ID variable
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           sent_time: new Date().toLocaleString()
         },
-        
-        PUBLIC_KEY //public key updated
-        
+
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! //public key updated
+
       )
       .then(
         () => {
@@ -50,7 +50,7 @@ const ContactForm = () => {
           setIsSending(false);
         }
       );
-     
+
 
   };
 
