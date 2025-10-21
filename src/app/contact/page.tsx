@@ -8,9 +8,9 @@ const ContactForm = () => {
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState("");
 
-  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!; // ⚠️ Fixed name (was TEMPLATE_USER)
-  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+  // const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+  // const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!; // ⚠️ Fixed name (was TEMPLATE_USER)
+  // const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
 
   const handleChange = (
@@ -19,40 +19,44 @@ const ContactForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSending(true);
-    setStatus("");
+const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setIsSending(true);
+  setStatus("");
 
-    emailjs
-      .send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!, // ✅ correct EmailJS Template ID variable
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          sent_time: new Date().toLocaleString()
-        },
+  // ✅ Clean up any stray spaces/newlines from .env values
+  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID?.trim()!;
+  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID?.trim()!;
+  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY?.trim()!;
 
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! //public key updated
+  // console.log("EmailJS IDs:", { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY }); // debug check
 
-      )
-      .then(
-        () => {
-          setStatus("✅ Message sent successfully");
-          setFormData({ name: "", email: "", message: "" });
-          setIsSending(false);
-        },
-        (error) => {
-          console.error(error);
-          setStatus("❌ Failed to send message. Please try again later.");
-          setIsSending(false);
-        }
-      );
+  emailjs
+    .send(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        sent_time: new Date().toLocaleString(),
+      },
+      PUBLIC_KEY
+    )
+    .then(
+      () => {
+        setStatus("✅ Message sent successfully");
+        setFormData({ name: "", email: "", message: "" });
+        setIsSending(false);
+      },
+      (error) => {
+        console.error(error);
+        setStatus("❌ Failed to send message. Please try again later.");
+        setIsSending(false);
+      }
+    );
+};
 
-
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#050816] to-[#1a1f38] flex items-center justify-center px-6 py-10">
