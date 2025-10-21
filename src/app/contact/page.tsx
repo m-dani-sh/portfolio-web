@@ -8,9 +8,9 @@ const ContactForm = () => {
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState("");
 
-  // const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-  // const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!; // ⚠️ Fixed name (was TEMPLATE_USER)
-  // const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!; // ⚠️ Fixed name (was TEMPLATE_USER)
+  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
 
   const handleChange = (
@@ -24,11 +24,9 @@ const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
   setIsSending(true);
   setStatus("");
 
-  // ✅ Clean up any stray spaces/newlines from .env values
-  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID?.trim()!;
-  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID?.trim()!;
-  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY?.trim()!;
-
+  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!; // ⚠️ Fixed name (was TEMPLATE_USER)
+  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
   // console.log("EmailJS IDs:", { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY }); // debug check
 
   emailjs
