@@ -51,7 +51,7 @@ const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
       },
       PUBLIC_KEY
     );
-    setStatus("✅ Message sent successfully");
+    setStatus("✅ Message sent successfully.");
     setFormData({ name: "", email: "", message: "" });
   } catch (error) {
     console.error("❌ Email send error:", error);
